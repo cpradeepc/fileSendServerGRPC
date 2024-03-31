@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package ="./proto";
+
+
+// client request in form 
+message Upload_req{
+    string FilePath =1;
+    bytes chunk =2;
+}
+
+//server response in this form
+message Upload_resp{
+    int64 FileSize =1;
+    string message =2;
+}
+
+service StreamUpload{
+    rpc Upload(stream Upload_req) returns (Upload_resp);
+}
